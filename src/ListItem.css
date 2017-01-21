@@ -1,0 +1,12 @@
+.List-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #f1f1f1;
+}
+.List-item span {
+  display: inline-block;
+  margin-right: 10px;
+}
+.List-item .List-streetAddress {
+  display: block;
+}

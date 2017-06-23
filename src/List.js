@@ -8,7 +8,7 @@ class List extends Component {
       <div>
         <div className="List">
           {this.props.items.map((item) => {
-            return <ListItem item={item} key={item._id.toString()} />
+            return <ListItem selectItem={this.props.selectItem} item={item} key={item._id.toString()} />
           })}
         </div>
       </div>

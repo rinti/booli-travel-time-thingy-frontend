@@ -19,6 +19,12 @@ class App extends Component {
     this.switchOrdering = this.switchOrdering.bind(this)
   }
 
+  selectItem = (item) => {
+    this.setState({
+      selectedItem: item
+    })
+  }
+
   switchOrdering() {
     this.setState((prevState) => {
       const newOrder = prevState.ordering === 'asc' ? 'desc' : 'asc'
@@ -40,11 +46,11 @@ class App extends Component {
           <div className="List-wrapper">
             <div className="List-half">
               <button onClick={this.switchOrdering}>Reverse order</button>
-              <List items={this.state.items} />
+              <List selectItem={this.selectItem} items={this.state.items} />
             </div>
             <div className="List-half">
               <div className="Selected-item">
-                lorem ipsum
+                {this.state.selectedItem ? this.state.selectedItem.item.location.address.streetAddress : 'Lorem ipsum'}
               </div>
             </div>
           </div>

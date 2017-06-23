@@ -13,10 +13,12 @@ class ListItem extends Component {
     let item = this.props.item
     return (
       <div className="List-item">
-            <span className="List-kmFromWork">{this.metersToKilometers(item.meters)} km</span>
-            <span className="List-minutesToWork">{this.secondsToMinutes(item.seconds)} min</span>
-            <span className="List-namedArea">{item.item.location.namedAreas[0]}</span>
-            <span className="List-streetAddress">{item.item.location.address.streetAddress}</span>
+        <a onClick={() => this.props.selectItem(item)} href="#">
+          <span className="List-kmFromWork">{this.metersToKilometers(item.meters)} km</span>
+          <span className="List-minutesToWork">{this.secondsToMinutes(item.seconds)} min</span>
+          <span className="List-namedArea">{item.item.location.namedAreas[0]}</span>
+          <span className="List-streetAddress">{item.item.location.address.streetAddress}</span>
+        </a>
       </div>
     )
   }

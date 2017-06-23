@@ -17,6 +17,7 @@ class SelectedItem extends Component {
 
     return (
       <div className="List-item">
+          <a href={`https://www.booli.se/redirect/all-images?id=${item.item.booliId}`}>Alla bilder</a> 
           <button onClick={() => this.props.toggleInterest(item)}>{item.interested ? 'Interested' : 'Not interested'}</button>
           <span className="List-kmFromWork">{metersToKilometers(item.meters)} km</span>
           <span className="List-minutesToWork">{secondsToMinutes(item.seconds)} min</span>

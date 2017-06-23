@@ -16,26 +16,25 @@ class SelectedItem extends Component {
     ]
 
     return (
-      <div className="List-item">
-          <a href={`https://www.booli.se/redirect/all-images?id=${item.item.booliId}`}>Alla bilder</a> 
-          <button onClick={() => this.props.toggleInterest(item)}>{item.interested ? 'Interested' : 'Not interested'}</button>
-          <span className="List-kmFromWork">{metersToKilometers(item.meters)} km</span>
-          <span className="List-minutesToWork">{secondsToMinutes(item.seconds)} min</span>
-          <span className="List-namedArea">{item.item.location.namedAreas[0]}</span>
-          <span className="List-streetAddress">{item.item.location.address.streetAddress}</span>
+      <div className="SelectedItem">
+        <a href={`https://www.booli.se/redirect/all-images?id=${item.item.booliId}`}>Alla bilder</a> 
+        <button onClick={() => this.props.toggleInterest(item)}>
+          {item.interested ? 'Interested' : 'Not interested'}
+        </button>
 
+        <Map className="SelectedItem-Map" center={position} zoom={14}>
+          <TileLayer
+            url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+            attribution=''
+          />
+          <Marker position={position}>
+            <Popup>
+              <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
+            </Popup>
+          </Marker>
+        </Map>
 
-      <Map className="SelectedItem-Map" center={position} zoom={14}>
-        <TileLayer
-          url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-          attribution=''
-        />
-        <Marker position={position}>
-          <Popup>
-            <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
-          </Popup>
-        </Marker>
-      </Map>
+        <span className="List-streetAddress">{item.item.location.address.streetAddress}</span>
 
       </div>
     )

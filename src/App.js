@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import orderBy from 'lodash/orderBy'
 import List from './List'
+import SelectedItem from './SelectedItem'
 import './App.css'
 
 class App extends Component {
@@ -50,7 +51,7 @@ class App extends Component {
             </div>
             <div className="List-half">
               <div className="Selected-item">
-                {this.state.selectedItem ? this.state.selectedItem.item.location.address.streetAddress : 'Lorem ipsum'}
+                <SelectedItem item={this.state.selectedItem} />
               </div>
             </div>
           </div>

@@ -63,7 +63,6 @@ class App extends Component {
       const newOrder = prevState.ordering === 'asc' ? 'desc' : 'asc'
       return {
         ordering: newOrder,
-        items: orderBy(prevState.items, 'seconds', newOrder)
       }
     })
   }
@@ -73,6 +72,11 @@ class App extends Component {
     if(this.state.hideNonInterested) {
       items = items.filter((item) => item.interested)
     }
+    
+    items = orderBy(items, (item) => {
+        return item.seconds/item.item.listPrice
+    }, this.state.ordering);
+
     return items
   }
 

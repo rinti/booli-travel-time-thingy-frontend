@@ -1,9 +1,8 @@
 .List-item {
   margin-bottom: 15px;
 }
-.List-item span {
-  display: inline-block;
-  margin-right: 10px;
+.List-item table {
+  width: 100%;
 }
 .List-item .List-streetAddress {
   display: block;

@@ -19,7 +19,7 @@ class SelectedItem extends Component {
       <div className="SelectedItem">
         <a href={`https://www.booli.se/redirect/all-images?id=${item.item.booliId}`}>Alla bilder</a> 
         <button onClick={() => this.props.toggleInterest(item)}>
-          {item.interested ? 'Interested' : 'Not interested'}
+          {!item.interested ? 'Interested' : 'Not interested'}
         </button>
 
         <Map className="SelectedItem-Map" center={position} zoom={14}>

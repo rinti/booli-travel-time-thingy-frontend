@@ -81,12 +81,12 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Listings</h2>
+          <h2>Appartments</h2>
         </div>
         <div className="App-list">
         <div className="Filters">
-          <button onClick={this.switchOrdering}>Reverse order</button>
-          <button onClick={this.toggleNonInterested}>{this.state.hideNonInterested ? 'Show non interested' : 'Hide non interested' }</button>
+            <button onClick={this.switchOrdering}>Reverse order</button>
+            <button onClick={this.toggleNonInterested}>{this.state.hideNonInterested ? 'Show non interested' : 'Hide non interested' }</button>
         </div>
           <div className="List-wrapper">
             <div className="List-half">

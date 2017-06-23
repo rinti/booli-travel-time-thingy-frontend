@@ -16,6 +16,7 @@ class App extends Component {
       this.setState({
         items: orderedItems,
         selectedItem: orderedItems[0],
+        hideNonInterested: true,
       })
     })
 
@@ -49,6 +50,14 @@ class App extends Component {
     })
   }
 
+  toggleNonInterested = () => {
+    this.setState((prevState) => {
+      return {
+        hideNonInterested: !prevState.hideNonInterested,
+      }
+    })
+  }
+
   switchOrdering() {
     this.setState((prevState) => {
       const newOrder = prevState.ordering === 'asc' ? 'desc' : 'asc'
@@ -59,6 +68,14 @@ class App extends Component {
     })
   }
 
+  filteredItems() {
+    let items = this.state.items
+    if(this.state.hideNonInterested) {
+      items = items.filter((item) => item.interested)
+    }
+    return items
+  }
+
 
   render() {
     return (
@@ -67,10 +84,13 @@ class App extends Component {
           <h2>Listings</h2>
         </div>
         <div className="App-list">
+        <div className="Filters">
+          <button onClick={this.switchOrdering}>Reverse order</button>
+          <button onClick={this.toggleNonInterested}>{this.state.hideNonInterested ? 'Show non interested' : 'Hide non interested' }</button>
+        </div>
           <div className="List-wrapper">
             <div className="List-half">
-              <button onClick={this.switchOrdering}>Reverse order</button>
-              <List selectItem={this.selectItem} items={this.state.items} />
+              <List selectItem={this.selectItem} items={this.filteredItems()} />
             </div>
             <div className="List-half">
               <div className="Selected-item">

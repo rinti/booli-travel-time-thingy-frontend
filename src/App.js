@@ -12,12 +12,35 @@ class App extends Component {
     this.state = {items: [], ordering: 'asc'}
 
     itemsPromise.then((items) => {
+      const orderedItems = orderBy(items, 'seconds', this.state.ordering)
       this.setState({
-        items: orderBy(items, 'seconds', this.state.ordering)
+        items: orderedItems,
+        selectedItem: orderedItems[0],
       })
     })
 
     this.switchOrdering = this.switchOrdering.bind(this)
+  }
+
+  toggleInterest = (item) => {
+      const id = item._id;
+      fetch(`http://localhost:3333/items/toggleInterest/?id=${id}`,
+      {method: 'PUT'}, () => {}).then(() => {
+          let items = this.state.items;
+          let selectedItem;
+
+          for(var i in items) {
+            if(items[i]._id === id) {
+                items[i].interested = !items[i].interested
+                selectedItem = items[i];
+            }
+          }
+
+          this.setState({
+            items,
+            selectedItem,
+          })
+      })
   }
 
   selectItem = (item) => {
@@ -51,7 +74,7 @@ class App extends Component {
             </div>
             <div className="List-half">
               <div className="Selected-item">
-                <SelectedItem item={this.state.selectedItem} />
+                <SelectedItem toggleInterest={this.toggleInterest} item={this.state.selectedItem} />
               </div>
             </div>
           </div>

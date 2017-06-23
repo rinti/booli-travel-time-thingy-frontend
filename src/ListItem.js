@@ -10,6 +10,7 @@ class ListItem extends Component {
     return (
       <div className="List-item">
         <a onClick={() => this.props.selectItem(item)} href="#">
+        {item.interested.toString()}
           <span className="List-kmFromWork">{metersToKilometers(item.meters)} km</span>
           <span className="List-minutesToWork">{secondsToMinutes(item.seconds)} min</span>
           <span className="List-namedArea">{item.item.location.namedAreas[0]}</span>

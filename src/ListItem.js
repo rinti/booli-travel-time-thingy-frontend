@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment';
 
-import { metersToKilometers, secondsToMinutes, moneyFormat } from './utils'
+import { secondsToMinutes, moneyFormat } from './utils'
 
 import './ListItem.css'
 
@@ -14,6 +14,7 @@ class ListItem extends Component {
     return (
         <a className="List-item" onClick={() => this.props.selectItem(item)} href="#">
         <table>
+          <tbody>
             <tr>
               <td className="List-askingPrice" width="19%">{moneyFormat(item.item.listPrice)} kr</td>
               <td className="List-kmFromWork" width="8%">{days}d</td>
@@ -21,6 +22,7 @@ class ListItem extends Component {
               <td className="List-kvm" width="12%">{item.item.livingArea}kvm</td>
               <td className="List-namedArea" width="49%">{item.item.location.namedAreas[0]}</td>
             </tr>
+          </tbody>
         </table>
         </a>
     )

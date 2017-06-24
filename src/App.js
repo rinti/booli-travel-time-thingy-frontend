@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import orderBy from 'lodash/orderBy'
+import axios from 'axios';
 import List from './List'
 import SelectedItem from './SelectedItem'
 import './App.css'
@@ -7,26 +8,28 @@ import './App.css'
 class App extends Component {
   constructor(props) {
     super(props)
-    let itemsPromise = fetch('http://localhost:3333/items/').then(item => item.json())
+
 
     this.state = {items: [], ordering: 'asc'}
-
-    itemsPromise.then((items) => {
-      const orderedItems = orderBy(items, 'seconds', this.state.ordering)
-      this.setState({
-        items: orderedItems,
-        selectedItem: orderedItems[0],
-        hideNonInterested: true,
-      })
-    })
 
     this.switchOrdering = this.switchOrdering.bind(this)
   }
 
+  async componentDidMount() {
+    let items = await axios.get('http://localhost:3333/items/')
+
+    const orderedItems = orderBy(items.data, 'seconds', this.state.ordering)
+
+    this.setState({
+      items: orderedItems,
+      selectedItem: orderedItems[0],
+      hideNonInterested: true,
+    })
+  }
+
   toggleInterest = (item) => {
       const id = item._id;
-      fetch(`http://localhost:3333/items/toggleInterest/?id=${id}`,
-      {method: 'PUT'}, () => {}).then(() => {
+      axios.put(`http://localhost:3333/items/toggleInterest/?id=${id}`).then(() => {
           let items = this.state.items;
           let selectedItem;
 

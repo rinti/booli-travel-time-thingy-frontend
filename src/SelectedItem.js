@@ -1,11 +1,30 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+import Datetime from 'react-datetime'
+import moment from 'moment'
 
-import { metersToKilometers, secondsToMinutes } from './utils'
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
 import './SelectedItem.css'
 
 class SelectedItem extends Component {
+
+  addShowing = () => {
+    const id = this.props.item._id
+    console.log(this.refs.show.state.selectedDate.format('YYYY-MM-DD HH:mm'))
+    axios.post(`http://localhost:3333/updateShowing/`, {
+      id,
+      date: this.refs.show.state.selectedDate.format('YYYY-MM-DD HH:mm')
+    }).then((data) => {
+      this.refs.show.value = '';
+      console.log(data.data)
+      this.props.selectItem(data.data);
+    }).catch((err) => {
+      console.log(err)
+      this.refs.show.value = '';
+    })
+  }
+
   render() {
     let item = this.props.item
     if(!item) { return null }
@@ -21,6 +40,16 @@ class SelectedItem extends Component {
         <button onClick={() => this.props.toggleInterest(item)}>
           {!item.interested ? 'Interested' : 'Not interested'}
         </button>
+
+        {item.showings && item.showings.map((show, i) => {
+          return (
+            <span className="showing-date" key={i}>
+              {moment(show).format('DD/MM HH:ss')}
+            </span>
+          )
+        })}
+
+        <Datetime ref="show" dateFormat="YYYY-MM-DD" timeFormat="HH:mm" /> <button onClick={this.addShowing}>Add showing</button>
 
         <Map className="SelectedItem-Map" center={position} zoom={14}>
           <TileLayer

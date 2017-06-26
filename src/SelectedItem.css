@@ -3,3 +3,7 @@
     margin: 10px 0;
 }
 
+.SelectedItem .showing-date {
+  display: block;
+  clear: both;
+}

@@ -4,6 +4,7 @@ import axios from 'axios';
 import List from './List'
 import SelectedItem from './SelectedItem'
 import './App.css'
+import './react-datetime.css'
 
 class App extends Component {
   constructor(props) {
@@ -101,7 +102,7 @@ class App extends Component {
             </div>
             <div className="List-half">
               <div className="Selected-item">
-                <SelectedItem toggleInterest={this.toggleInterest} item={this.state.selectedItem} />
+                <SelectedItem selectItem={this.selectItem} toggleInterest={this.toggleInterest} item={this.state.selectedItem} />
               </div>
             </div>
           </div>

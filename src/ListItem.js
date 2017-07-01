@@ -12,7 +12,7 @@ class ListItem extends Component {
     let today = moment()
     let days = today.diff(published, 'days');
     return (
-        <a className="List-item" onClick={() => this.props.selectItem(item)} href="#">
+        <a className="List-item" onClick={(e) => { e.preventDefault(); this.props.selectItem(item) }} href="">
           <table>
             <tbody>
               <tr>

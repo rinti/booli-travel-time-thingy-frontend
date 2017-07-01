@@ -13,17 +13,24 @@ class ListItem extends Component {
     let days = today.diff(published, 'days');
     return (
         <a className="List-item" onClick={() => this.props.selectItem(item)} href="#">
-        <table>
-          <tbody>
-            <tr>
-              <td className="List-askingPrice" width="19%">{moneyFormat(item.item.listPrice)} kr</td>
-              <td className="List-kmFromWork" width="8%">{days}d</td>
-              <td className="List-minutesToWork" width="12%">{secondsToMinutes(item.seconds)} min</td>
-              <td className="List-kvm" width="12%">{item.item.livingArea}kvm</td>
-              <td className="List-namedArea" width="49%">{item.item.location.namedAreas[0]}</td>
-            </tr>
-          </tbody>
-        </table>
+          <table>
+            <tbody>
+              <tr>
+                <td className="List-askingPrice" width="19%">{moneyFormat(item.item.listPrice)} kr</td>
+                <td className="List-kmFromWork" width="8%">{days}d</td>
+                <td className="List-minutesToWork" width="12%">{secondsToMinutes(item.seconds)} min</td>
+                <td className="List-kvm" width="12%">{item.item.livingArea}kvm</td>
+                <td className="List-namedArea" width="49%">{item.item.location.namedAreas[0]}</td>
+              </tr>
+            </tbody>
+          </table>
+          {item.showings.map((show, i) => {
+            return (
+              <span key={i}>
+                {moment(show).format('ddd D MMM')}
+              </span> 
+            )
+          })}
         </a>
     )
   }

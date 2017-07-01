@@ -17,10 +17,8 @@ class SelectedItem extends Component {
       date: this.refs.show.state.selectedDate.format('YYYY-MM-DD HH:mm')
     }).then((data) => {
       this.refs.show.value = '';
-      console.log(data.data)
       this.props.selectItem(data.data);
     }).catch((err) => {
-      console.log(err)
       this.refs.show.value = '';
     })
   }

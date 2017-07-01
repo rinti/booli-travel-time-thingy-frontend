@@ -18,3 +18,8 @@
 .List-item:hover {
   background-color: #f1f1f1;
 }
+.List-item span {
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 10px;
+}

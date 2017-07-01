@@ -78,7 +78,11 @@ class App extends Component {
     }
     
     items = orderBy(items, (item) => {
-        return item.seconds/item.item.listPrice
+      let strength = -1;
+      if(item.showings.length > 0) {
+        strength = -10000;
+      }
+      return (item.seconds/item.item.listPrice) * strength;
     }, this.state.ordering);
 
     return items

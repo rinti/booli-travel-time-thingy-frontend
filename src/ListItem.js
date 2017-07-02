@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment';
 
-import { secondsToMinutes, moneyFormat } from './utils'
+import { secondsToMinutes, moneyFormat, formatDate } from './utils'
 
 import './ListItem.css'
 
@@ -27,7 +27,7 @@ class ListItem extends Component {
           {item.showings.map((show, i) => {
             return (
               <span key={i}>
-                {moment(show).format('ddd D MMM')}
+                {formatDate(show)}
               </span> 
             )
           })}

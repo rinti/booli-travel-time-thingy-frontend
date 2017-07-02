@@ -3,7 +3,20 @@
     margin: 10px 0;
 }
 
+.SelectedItem .showings {
+  margin: 10px 0;
+}
+
 .SelectedItem .showing-date {
   display: block;
   clear: both;
+}
+
+.SelectedItem .rdt {
+  display: inline;
+}
+
+.SelectedItem .rdt input {
+  padding: 8px;
+  border: 1px solid #ada09b;
 }

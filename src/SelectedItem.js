@@ -5,6 +5,8 @@ import moment from 'moment'
 
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
+import { formatDate } from './utils'
+
 import './SelectedItem.css'
 
 class SelectedItem extends Component {
@@ -39,15 +41,18 @@ class SelectedItem extends Component {
           {!item.interested ? 'Interested' : 'Not interested'}
         </button>
 
-        {item.showings && item.showings.map((show, i) => {
-          return (
-            <span className="showing-date" key={i}>
-              {moment(show).format('DD/MM HH:ss')}
-            </span>
-          )
-        })}
-
         <Datetime ref="show" dateFormat="YYYY-MM-DD" timeFormat="HH:mm" /> <button onClick={this.addShowing}>Add showing</button>
+
+        <div className="showings">
+          {item.showings && item.showings.map((show, i) => {
+            return (
+              <span className="showing-date" key={i}>
+                {formatDate(show)}
+              </span>
+            )
+          })}
+        </div>
+
 
         <Map className="SelectedItem-Map" center={position} zoom={14}>
           <TileLayer

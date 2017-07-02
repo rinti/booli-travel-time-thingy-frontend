@@ -23,8 +23,11 @@ class App extends Component {
 
     this.setState({
       items: orderedItems,
-      selectedItem: orderedItems[0],
       hideNonInterested: true,
+    }, () => {
+      this.setState({
+        selectedItem: this.filteredItems()[0],
+      })
     })
   }
 
